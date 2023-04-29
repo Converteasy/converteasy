@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      body {
+        font-family: sans-serif;
+        background-color: #f7f7f7;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .converter {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 28px;
+        margin-top: 0;
+      }
+
+      input {
+        padding: 8px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: none;
+        margin-bottom: 10px;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #3e8e41;
+      }
+
+      #result {
+        font-size: 24px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="converter">
+      <h1>Temperature Converter <i class="fa fa-thermometer-half"></i></h1>
+      <div class="form-group">
+        <label for="celsius">Celsius</label>
+        <input type="number" id="celsius" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="fahrenheit">Fahrenheit</label>
+        <input type="number" id="fahrenheit" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="kelvin">Kelvin</label>
+        <input type="number" id="kelvin" class="form-control"/>
+      </div>
+      <button onclick="convert()" class="btn btn-primary">Convert</button>
+      <div id="result"></div>
+      <button onclick="reset()" class="btn btn-danger">Reset</button>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+     function convert() {
+  let celsius = parseFloat(document.getElementById("celsius").value);
+  let fahrenheit = parseFloat(document.getElementById("fahrenheit").value);
+  let kelvin = parseFloat(document.getElementById("kelvin").value);
+
+  if (celsius && !isNaN(celsius)) {
+    fahrenheit = (celsius * 9) / 5 + 32;
+    kelvin = celsius + 273.15;
+  } else if (fahrenheit && !isNaN(fahrenheit)) {
+    celsius = ((fahrenheit - 32) * 5) / 9;
+    kelvin = ((fahrenheit - 32) * 5) / 9 + 273.15;
+  } else if (kelvin && !isNaN(kelvin)) {
+    celsius = kelvin - 273.15;
+    fahrenheit = ((kelvin - 273.15) * 9) / 5 + 32;
+  }
+
+  document.getElementById("celsius").value = !isNaN(celsius) ? celsius.toFixed(2) : "";
+  document.getElementById("fahrenheit").value = !isNaN(fahrenheit) ? fahrenheit.toFixed(2) : "";
+  document.getElementById("kelvin").value = !isNaN(kelvin) ? kelvin.toFixed(2) : "";
+  document.getElementById("result").innerHTML = "Conversion successful!";
+}
+
+     function reset() {
+  document.getElementById("celsius").value = "";
+  document.getElementById("fahrenheit").value = "";
+  document.getElementById("kelvin").value = "";
+  document.getElementById("result").innerHTML = "";
+}
+
+    </script>
+  </body>
+</html>
