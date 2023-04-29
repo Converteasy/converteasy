@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weight Converter</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+      .container {
+        max-width: 500px;
+        margin: auto;
+        background-color: #f1f1f1;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      
+      .btn-primary {
+        background-color: green;
+        border-color: green;
+      }
+    </style>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1><i class="fas fa-balance-scale"></i> Weight Converter</h1>
+      <div class="form-group">
+        <label>Enter a weight:</label>
+        <input type="number" id="input-weight" class="form-control">
+        <select id="unit-from" class="form-control">
+          <option value="grams">grams</option>
+          <option value="kilograms">kilograms</option>
+          <option value="ounces">ounces</option>
+          <option value="pounds">pounds</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Convert to:</label>
+        <select id="unit-to" class="form-control">
+          <option value="grams">grams</option>
+          <option value="kilograms">kilograms</option>
+          <option value="ounces">ounces</option>
+          <option value="pounds">pounds</option>
+        </select>
+      </div>
+      <button type="button" onclick="convert()" class="btn btn-primary">Convert</button>
+      <div id="result"></div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Custom JS -->
+    <script>
+      function convert() {
+  const weight = parseFloat(document.getElementById("input-weight").value);
+  const unitFrom = document.getElementById("unit-from").value;
+  const unitTo = document.getElementById("unit-to").value;
+  let result;
+
+  if (unitFrom === "grams" && unitTo === "kilograms") {
+    result = weight / 1000;
+  } else if (unitFrom === "grams" && unitTo === "ounces") {
+    result = weight * 0.035274;
+  } else if (unitFrom === "grams" && unitTo === "pounds") {
+    result = weight * 0.00220462;
+  } else if (unitFrom === "kilograms" && unitTo === "grams") {
+    result = weight * 1000;
+  } else if (unitFrom === "kilograms" && unitTo === "ounces") {
+    result = weight * 35.274;
+  } else if (unitFrom === "kilograms" && unitTo === "pounds") {
+    result = weight * 2.20462;
+  } else if (unitFrom === "ounces" && unitTo === "grams") {
+    result = weight / 0.035274;
+  } else if (unitFrom === "ounces" && unitTo === "kilograms") {
+    result = weight / 35.274;
+  } else if (unitFrom === "ounces" && unitTo === "pounds") {
+    result = weight * 0.0625;
+  } else if (unitFrom === "pounds" && unitTo === "grams") {
+    result = weight / 0.00220462;
+  } else if (unitFrom === "pounds" && unitTo === "kilograms") {
+    result = weight / 2.20462;
+  } else if (unitFrom === "pounds" && unitTo === "ounces") {
+    result = weight / 0.0625;
+  } else {
+    result = weight;
+  }
+
+  document.getElementById("result").innerHTML = `${weight} ${unitFrom} = ${result.toFixed(2)} ${unitTo}`;
+}
+
+    </script>
+  </body>
+</html>

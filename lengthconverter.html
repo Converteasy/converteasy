@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Length Converter</title>
+    <!-- add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- add Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+      /* center the box */
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      
+      /* style the box */
+      .converter-box {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+
+      /* style the icon */
+      .converter-icon {
+        font-size: 48px;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="converter-box">
+        <i class="converter-icon fas fa-balance-scale"></i>
+        <h1>Length Converter</h1>
+        <div class="form">
+          <div class="form-group">
+            <label for="inputUnit">From:</label>
+            <select id="inputUnit" class="form-control">
+              <option value="inch">inch</option>
+              <option value="centimeter">centimeter</option>
+              <option value="kilometer">kilometer</option>
+              <option value="mile">mile</option>
+              <option value="foot">foot</option>
+            </select>
+            <input type="number" id="inputValue" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="outputUnit">To:</label>
+            <select id="outputUnit" class="form-control">
+              <option value="inch">inch</option>
+              <option value="centimeter">centimeter</option>
+              <option value="kilometer">kilometer</option>
+              <option value="mile">mile</option>
+              <option value="foot">foot</option>
+            </select>
+            <input type="text" id="outputValue" class="form-control" disabled>
+          </div>
+          <button id="convertBtn" class="btn btn-primary btn-success">Convert</button>
+        </div>
+      </div>
+    </div>
+    <!-- add Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+
+      const inputUnit = document.getElementById("inputUnit");
+      const outputUnit = document.getElementById("outputUnit");
+      const inputValue = document.getElementById("inputValue");
+      const outputValue = document.getElementById("outputValue");
+      const convertBtn = document.getElementById("convertBtn");
+
+      convertBtn.addEventListener("click", () => {
+        const inputUnitValue = inputUnit.value;
+        const outputUnitValue = outputUnit.value;
+        const inputValueValue = inputValue.value;
+
+         if (inputUnitValue === "inch" && outputUnitValue === "inch") {
+          outputValue.value = inputValueValue;
+        } else if (inputUnitValue === "inch" && outputUnitValue === "centimeter") {
+          outputValue.value = inputValueValue * 2.54;
+        } else if (inputUnitValue === "inch" && outputUnitValue === "kilometer") {
+          outputValue.value = inputValueValue * 0.0000254;
+        } else if (inputUnitValue === "inch" && outputUnitValue === "mile") {
+          outputValue.value = inputValueValue * 0.0000157828;
+        } else if (inputUnitValue === "inch" && outputUnitValue === "foot") {
+          outputValue.value = inputValueValue * 0.0833333;
+        } else if (inputUnitValue === "centimeter" && outputUnitValue === "inch") {
+          outputValue.value = inputValueValue * 0.393701;
+        } else if (inputUnitValue === "centimeter" && outputUnitValue === "centimeter") {
+          outputValue.value = inputValueValue;
+        } else if (inputUnitValue === "centimeter" && outputUnitValue === "kilometer") {
+          outputValue.value = inputValueValue * 0.00001;
+        } else if (inputUnitValue === "centimeter" && outputUnitValue === "mile") {
+          outputValue.value = inputValueValue * 0.0000062137;
+        } else if (inputUnitValue === "centimeter" && outputUnitValue === "foot") {
+          outputValue.value = inputValueValue * 0.0328084;
+        } else if (inputUnitValue === "kilometer" && outputUnitValue === "inch") {
+          outputValue.value = inputValueValue * 39370.1;
+        } else if (inputUnitValue === "kilometer" && outputUnitValue === "centimeter") {
+          outputValue.value = inputValueValue * 100000;
+        } else if (inputUnitValue === "kilometer" && outputUnitValue === "kilometer") {
+          outputValue.value = inputValueValue;
+        } else if (inputUnitValue === "kilometer" && outputUnitValue === "mile") {
+          outputValue.value = inputValueValue * 0.621371;
+        } else if (inputUnitValue === "kilometer" && outputUnitValue === "foot") {
+          outputValue.value = inputValueValue * 3280.84;
+        } else if (inputUnitValue === "mile" && outputUnitValue === "inch") {
+          outputValue.value = inputValueValue * 63360;
+        } else if (inputUnitValue === "mile" && outputUnitValue === "centimeter") {
+          outputValue.value = inputValueValue * 160934;
+        } else if (inputUnitValue === "mile" && outputUnitValue === "kilometer") {
+          outputValue.value = inputValueValue * 1.60934;
+        } else if (inputUnitValue === "mile" && outputUnitValue === "mile") {
+        outputValue.value = inputValueValue;
+        } else if (inputUnitValue === "mile" && outputUnitValue === "foot") {
+        outputValue.value = inputValueValue * 5280;
+        } else if (inputUnitValue === "foot" && outputUnitValue === "inch") {
+        outputValue.value = inputValueValue * 12;
+        } else if (inputUnitValue === "foot" && outputUnitValue === "centimeter") {
+        outputValue.value = inputValueValue * 30.48;
+        } else if (inputUnitValue === "foot" && outputUnitValue === "kilometer") {
+        outputValue.value = inputValueValue * 0.0003048;
+        } else if (inputUnitValue === "foot" && outputUnitValue === "mile") {
+        outputValue.value = inputValueValue * 0.000189394;
+        } else if (inputUnitValue === "foot" && outputUnitValue === "foot") {
+        outputValue.value = inputValueValue;
+        }
+        });
+    </script>
+  </body>
+</html>

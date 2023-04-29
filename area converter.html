@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Area Converter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+      #areaConverter {
+        margin: 0 auto;
+        max-width: 500px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      #icon {
+        display: block;
+        margin: 0 auto;
+        width: 50px;
+        height: 50px;
+        background-image: url("https://image.flaticon.com/icons/svg/1532/1532567.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5" id="areaConverter">
+      <div id="icon"></div>
+      <h1>Area Converter</h1>
+
+      <div class="form-group">
+        <label for="value">Value:</label>
+        <input type="number" class="form-control" id="value">
+      </div>
+
+      <div class="form-group">
+        <label for="from">Convert From:</label>
+        <select class="form-control" id="from">
+          <option value="sqft">Square Foot</option>
+          <option value="sqin">Square Inch</option>
+          <option value="sqyd">Square Yard</option>
+          <option value="acre">Acre</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="to">Convert To:</label>
+        <select class="form-control" id="to">
+          <option value="sqin">Square Inch</option>
+          <option value="sqft">Square Foot</option>
+          <option value="sqyd">Square Yard</option>
+          <option value="acre">Acre</option>
+        </select>
+      </div>
+
+      <button type="button" class="btn btn-success" onclick="convert()">Convert</button>
+
+      <div class="form-group mt-3">
+        <label for="result">Result:</label>
+        <p class="form-control" id="result"></p>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+      function convert() {
+        var from = document.getElementById("from").value;
+        var to = document.getElementById("to").value;
+        var value = parseFloat(document.getElementById("value").value);
+        var result = document.getElementById("result");
+
+      if (from == "sqft" && to == "sqin") {
+        result.innerHTML = (value * 144).toString();
+      } else if (from == "sqft" && to == "sqyd") {
+        result.innerHTML = (value / 9).toString();
+      } else if (from == "sqft" && to == "acre") {
+        result.innerHTML = (value / 43560).toString();
+      } else if (from == "sqin" && to == "sqft") {
+        result.innerHTML = (value / 144).toString();
+      } else if (from == "sqin" && to == "sqyd") {
+        result.innerHTML = (value / 1296).toString();
+      } else if (from == "sqin" && to == "acre") {
+        result.innerHTML = (value / 6272640).toString();
+      } else if (from == "sqyd" && to == "sqft") {
+        result.innerHTML = (value * 9).toString();
+      } else if (from == "sqyd" && to == "sqin") {
+        result.innerHTML = (value * 1296).toString();
+      } else if (from == "sqyd" && to == "acre") {
+        result.innerHTML = (value / 4840).toString();
+      } else if (from == "acre" && to == "sqft") {
+        result.innerHTML = (value * 43560).toString();
+      } else if (from == "acre" && to == "sqin") {
+        result.innerHTML = (value * 6272640).toString();
+      } else if (from == "acre" && to == "sqyd"){
+	      result.innerHTML = (value * 4840).toString();
+      }
+    }
+  </script>
+</body>
+</html>
